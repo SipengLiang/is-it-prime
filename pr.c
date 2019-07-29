@@ -43,14 +43,17 @@ int isP(unsigned long int n)
   unsigned long int* list = genPlist(n);
   if(!list)
     {
+      free(list);
       return -1;
     }
   if(list[plistPos-1] != n)
     {
+      free(list);
       return 0;
     }
   else
     {
+      free(list);
       return 1;
     }
 }
