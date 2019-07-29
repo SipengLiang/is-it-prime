@@ -72,7 +72,12 @@ unsigned long int* genPlist(unsigned long int stop)
 	{
 	  if(cur % plist[i] == 0)
 	    {
+	      if(cur == stop)
+		{
+		  printf("%ld %% %ld = 0\n",cur,plist[i]);
+		}
 	      p = 0;
+	      break;
 	    }
 	}
       if(p)
