@@ -13,24 +13,33 @@ int isP(unsigned long int n);
 
 int main()
 {
-  unsigned long int num;
+  long int num;
   printf("=== IsItPrime? (IIP) v1.0 ===\nInput 1 to exit.\n\n>>");
   scanf("%ld",&num);
   while(num != 1)
     {
-      int res = isP(num);
-      if(res == 1)
+      if(num > 0)
 	{
-	  printf("\t-> Prime\n");
+	  
+	  int res = isP(num);
+	  if(res == 1)
+	    {
+	      printf("\t-> Prime\n");
+	    }
+	  else if(res == 0)
+	    {
+	      printf("\t-> Not Prime\n");
+	    }
+	  else if(res == -1)
+	    {
+	      printf("\t-> System out of memory, abort.\n");
+	      return -1;
+	  
+	    }
 	}
-      else if(res == 0)
+      else
 	{
-	  printf("\t-> Not Prime\n");
-	}
-      else if(res == -1)
-	{
-	  printf("\t System out of memory, abort.\n");
-	  return -1;
+	  printf("\t-> Nice try but %ld is not 'natural'\n",num);
 	}
       printf("\n>>");
       scanf("%ld",&num);
@@ -110,10 +119,10 @@ unsigned long int* appendPlist(unsigned long int* plist,
     {
       printf("Expand @ size=%d\n",plistSize);
       plistSize = plistSize *2;
-      unsigned long int* plistNew = (unsigned long int*)\
+      unsigned long int * plistNew = (unsigned long int*)\
 	realloc(plist,plistSize*sizeof(unsigned long int));
       if(!plistNew) return NULL;
-	plist = plistNew;
+      plist = plistNew;
     }
   plist[plistPos] = num;
   plistPos++;
