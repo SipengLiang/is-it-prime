@@ -110,9 +110,10 @@ unsigned long int* appendPlist(unsigned long int* plist,
     {
       printf("Expand @ size=%d\n",plistSize);
       plistSize = plistSize *2;
-      plist = (unsigned long int*)\
+      plistNew = (unsigned long int*)\
 	realloc(plist,plistSize*sizeof(unsigned long int));
-      if(!plist) return NULL;
+      if(!plistNew) return NULL;
+	plist = plistNew;
     }
   plist[plistPos] = num;
   plistPos++;
